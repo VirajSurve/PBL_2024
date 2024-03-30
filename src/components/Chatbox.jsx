@@ -10,10 +10,10 @@ function ChatBox() {
 
   const [input,setInput]=useState("");
   const [messages,setMessages]=useState([
-    {
-      text:"Hello again! Is there anything specific you need help with today?",
-      isBot:true,
-    }
+    // {
+    //   text:"Text that is displayed",
+    //   isBot:true/false,
+    // }
   ]);
 
   useEffect(()=>{
@@ -28,6 +28,7 @@ function ChatBox() {
       ...messages,
       {text,isBot:false}
     ]);
+
     const res=await runChat(input);
     setMessages([
       ...messages,
@@ -43,6 +44,7 @@ function ChatBox() {
   return (
     <div className="ChatBox">
       <div className="chats">
+      
         {messages.map((message,i)=>
           <div key={i} className={message.isBot?"chat bot":"chat"}>
           <img className="chatImg" src={message.isBot?gptIcon:userIcon} alt="" />

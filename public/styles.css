@@ -20,6 +20,16 @@ body {
   flex: 3;
   border-right: 1px solid rgb(100, 100, 100);
 }
+
+.chats {
+  overflow: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+  height: calc(100vh - 17rem);
+  text-align: justify;
+}
+
 .ChatBox {
   flex: 9;
 }
@@ -30,23 +40,19 @@ body {
   align-items: center;
   margin: 6rem 10rem;
   margin-bottom: 0;
+  max-width:100%;
 }
 
-.chats {
-  overflow: hidden;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  width:100%;
-  height: calc(100vh - 17rem);
-  text-align: justify;
-}
+
 
 .chat {
+  max-width: 100%;
   margin: 1rem;
   padding: 2rem 3rem;
   font-size: 1.2rem;
   display: flex;
   align-items: flex-start;
+  
 }
 
 .chatImg {
