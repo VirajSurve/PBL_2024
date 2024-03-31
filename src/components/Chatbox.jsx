@@ -1,15 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../public/styles.css";
-import sendBtn from "../../Assets/icons8-send-button-30.png";
-import userIcon from "../../Assets/user-shield-alt-1-svgrepo-com.svg";
+import sendBtn from "../../Assets/send.svg";
+import userIcon from "../../Assets/user.svg";
 import gptIcon from "../../Assets/circle-heat-svgrepo-com.svg";
 import { runChat } from "./Gemini.jsx";
+// import pg from "pg";
+
+// const db =new pg.Client({
+//     user:"postgres",
+//     host:"localhost",
+//     database:"FosterAI",
+//     password:"12345",
+//     port:5432,
+// });
+
 
 function ChatBox() {
   const msgEnd = useRef(null);
 
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([]);
+  let [messages, setMessages] = useState([]);
 
   useEffect(() => {
     msgEnd.current.scrollIntoView();
@@ -28,7 +38,19 @@ function ChatBox() {
     if (e.key === "Enter") await handleSend();
   };
 
-  const shouldPlayVideo = messages.length === 0; // Only play video if messages are null
+  const shouldPlayVideo = messages.length === 0; 
+
+  // db.connect();
+
+  // db.query("SELECT * FROM messages",(err,res)=>{
+  //   if(err){
+  //     console.error("Error executing Query",err.stack);
+  //   }else{
+  //     messages=res.rows;
+  //     console.log(messages);
+  //   }
+  //   db.end();
+  // });
 
   return (
     <div className="ChatBox">
@@ -42,7 +64,6 @@ function ChatBox() {
           <><video autoPlay loop muted playsInline className="back">
               <source src="Assets\4K Floating Particles Space 2160p Motion Background.mp4"></source>
             </video><div className="overlayText">
-                {/* Your text goes here */}
                 <p>FosterAI</p>
               </div></>
               )}
