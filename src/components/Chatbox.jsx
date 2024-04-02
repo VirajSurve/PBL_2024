@@ -1,56 +1,77 @@
 import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
 import "../../public/styles.css";
 import sendBtn from "../../Assets/send.svg";
 import userIcon from "../../Assets/user.svg";
-import gptIcon from "../../Assets/circle-heat-svgrepo-com.svg";
+import gptIcon from "../../Assets/logo.ico";
 import { runChat } from "./Gemini.jsx";
-// import pg from "pg";
 
-// const db =new pg.Client({
-//     user:"postgres",
-//     host:"localhost",
-//     database:"FosterAI",
-//     password:"12345",
-//     port:5432,
-// });
 
 
 function ChatBox() {
   const msgEnd = useRef(null);
 
   const [input, setInput] = useState("");
-  let [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+
 
   useEffect(() => {
     msgEnd.current.scrollIntoView();
   }, [messages]);
 
-  const handleSend = async () => {
-    const text = input;
-    setInput("");
-    setMessages([...messages, { text, isBot: false }]);
+  useEffect(() => {
+    fetchData();
+}, [refresh]);  // Depend on refresh instead of messages
 
-    const res = await runChat(input);
-    setMessages([...messages, { text: input, isBot: false }, { text: res, isBot: true }]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/messages/send");
+      const result = response.data; // Access the array of messages
+      console.log(result);
+      setMessages(result);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
+  
+  
+  
 
+
+  const handleSend = async () => {
+    
+    var userText = input;
+    setInput("");
+    setMessages([...messages, { txt: userText, isBot: false }]);
+  
+    var res = await runChat(input);
+    setMessages([...messages, { txt: userText, isBot: false }, { txt: res, isBot: true }]);
+  
+    try {
+      await axios.post("http://localhost:3000/api/messages/receive", {
+        userText: userText,
+        response: res, // Use the correct property name (aiResponse)
+      });
+      console.log("Message sent to server successfully");
+      
+    } catch (error) {
+      console.error("Error in sending message:", error);
+    }
+  };
+  
+
+
+
+
+  
   const handleEnter = async (e) => {
     if (e.key === "Enter") await handleSend();
   };
 
   const shouldPlayVideo = messages.length === 0; 
 
-  // db.connect();
-
-  // db.query("SELECT * FROM messages",(err,res)=>{
-  //   if(err){
-  //     console.error("Error executing Query",err.stack);
-  //   }else{
-  //     messages=res.rows;
-  //     console.log(messages);
-  //   }
-  //   db.end();
-  // });
 
   return (
     <div className="ChatBox">
@@ -73,7 +94,7 @@ function ChatBox() {
         {messages.map((message, i) => (
           <div key={i} className={message.isBot ? "chat bot" : "chat"}>
             <img className="chatImg" src={message.isBot ? gptIcon : userIcon} alt="" />
-            <p className="txt">{message.text}</p>
+            <p className="txt">{message.txt}</p>
           </div>
         ))}
         <div ref={msgEnd} />
@@ -93,7 +114,8 @@ function ChatBox() {
             <img src={sendBtn} alt="send" />
           </button>
         </div>
-        <p>Beta stage may prone to error.</p>
+        <div className="footer"><p>Beta stage may prone to error.</p></div>
+        
       </div>
     </div>
   );

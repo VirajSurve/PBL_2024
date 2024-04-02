@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "main": "src/index.tsx",
+  "main": "src/index.jsx",
   "type": "module",
   "dependencies": {
     "@google/generative-ai": "^0.3.1",
+    "axios": "^1.6.8",
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
     "nodemon": "^3.1.0",
+    "pg": "^8.11.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

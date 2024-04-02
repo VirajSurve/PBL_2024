@@ -20,6 +20,61 @@ body {
   flex: 3;
   border-right: 1px solid rgb(100, 100, 100);
 }
+.logo{
+  margin-right: 1rem;
+
+}
+.logoText{
+  font-size: 2rem;
+}
+.upperside{
+  padding: 2.5rem;
+  height: 70%;
+}
+.uppersideTop{
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+.addbtn{
+  height: 2rem;
+  padding-right: 1rem;
+}
+.midbtn{
+  background: #5a4bff;
+  border:none;
+  color: white;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  width: 25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  border-radius: 0.5rem;
+  
+}
+.lowerside{
+  padding:2rem;
+  margin-top: 10rem;
+}
+.listItems{
+  margin: 0.75rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  
+}
+.listItemsImage{
+  margin:1rem;
+  padding-right: 0.01rem;
+  
+}
+.logo{
+  width: 30px;
+  height: 30px;
+}
 
 .chats {
   overflow: hidden;
@@ -151,4 +206,8 @@ button{
   border-radius: 50%;
   background: transparent;
   
+}
+
+.footer{
+  margin-top: 10px;
 }
