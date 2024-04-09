@@ -7,10 +7,12 @@ import axios from "axios";
 
 function Sidebar() {
   const handleClick = async () => {
+    window.location.reload(false);
     try {
       console.log("new chat created");
       await axios.post("http://localhost:3000/api/messages/new_chat");
-      window.location.href = window.location.href;
+      
+      
      
     } catch (error) {
       console.error("Error creating new chat:", error);
@@ -23,7 +25,7 @@ function Sidebar() {
       <div className="upperside">
         <div className="uppersideTop">
           <img src={logo} alt="FosterAI logo" className="logo" />
-          <span className="logoText">FosterAI</span>
+          <img className="logoText" src="../Assets/FosterAi_logo.png" />
         </div>
         <button className="midbtn" onClick={handleClick}>
           <img src={plus} alt="" className="addbtn" />

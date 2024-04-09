@@ -19,14 +19,19 @@ body {
 .Sidebar {
   flex: 3;
   border-right: 1px solid rgb(100, 100, 100);
+  max-width:fit-content;
+  max-height: fit-content;
 }
 .logo{
+  margin-top: 5px;
   margin-right: 1rem;
 
 }
 .logoText{
-  font-size: 2rem;
+  align-items: center;
+  width: 100px;
 }
+
 .upperside{
   padding: 2.5rem;
   height: 70%;
@@ -41,7 +46,7 @@ body {
   padding-right: 1rem;
 }
 .midbtn{
-  background: #5a4bff;
+  background: #dd00ff89;
   border:none;
   color: white;
   padding: 1.5rem;
@@ -56,11 +61,11 @@ body {
   
 }
 .lowerside{
-  padding:2rem;
+  padding:1rem;
   margin-top: 10rem;
 }
 .listItems{
-  margin: 0.75rem;
+  margin: 1rem;
   display: flex;
   align-items: center;
   font-size: 1.3rem;
@@ -69,6 +74,7 @@ body {
 .listItemsImage{
   margin:1rem;
   padding-right: 0.01rem;
+  margin-bottom: none;
   
 }
 .logo{
@@ -79,6 +85,7 @@ body {
 .chats {
   overflow: hidden;
   overflow-y: auto;
+  scrollbar-width:none;
   scroll-behavior: smooth;
   width: 100%;
   height: calc(100vh - 17rem);
@@ -96,22 +103,25 @@ body {
   margin: 6rem 10rem;
   margin-bottom: 0;
   max-width:100%;
+  max-height: 100%;
 }
 
 
 
 .chat {
-  align-items:;
-  max-width: 100%;
+  
+  align-items:left;
+  max-width:fit-content;
   margin: 1rem;
-  padding: 2rem 3rem;
+  padding: 2rem 1.5rem;
   font-size: 1.2rem;
   display: flex;
   align-items: flex-start;
-  
+  overflow-wrap:anywhere;
 }
 
 .chatImg {
+  
   object-fit: cover;
   width: 3.5rem;
   margin-right: 2rem;
@@ -127,7 +137,7 @@ body {
 }
 
 .inp {
-  padding: 0.5rem;
+  padding: 0.29rem;
   background: rgba(28, 30, 58, 1);
   display: flex;
   align-items: center;
@@ -143,23 +153,19 @@ body {
   background: transparent;
   border: none;
   font-size: 1.4rem;
+  overflow: hidden;
 }
 .chatFooter {
   margin: 2rem 0;
 }
 .bot {
   background: rgba(28, 30, 58, 1);
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 0.5rem;
   width: fit-content;
 }
 
-.backgroundVideo{
-  position: relative;
-  text-align:center;
-  
- 
-}
+
 
 
 
@@ -186,9 +192,15 @@ body {
     height:100%;
   }
 } */
-
-.overlayText {
-  position: absolute;
+.backgroundVideo{
+  position: relative;
+  align-items: center;
+  width: 100%; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+ 
+}
+.overlayText img{
+  /* position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -197,7 +209,17 @@ body {
   text-align: center;
   font-size: 160px;
   
-  font-weight: 600;
+  font-weight: 600; */
+  position: absolute; /* Position the image absolutely within the container */
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 70%;
+  opacity:calc(0.25);
+  
+  
+  
 
 }
 
@@ -211,3 +233,21 @@ button{
 .footer{
   margin-top: 10px;
 }
+
+.txt{
+  margin-top: 8px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing:calc(100);
+  font-weight:300;
+  font-style:normal;
+  font-size:small;
+}
+
+img{
+  vertical-align: top;
+}
+
+.sendbtn{
+  color: white;
+}
+

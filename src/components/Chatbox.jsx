@@ -5,7 +5,7 @@ import sendBtn from "../../Assets/send.svg";
 import userIcon from "../../Assets/user.svg";
 import gptIcon from "../../Assets/logo.ico";
 import { runChat } from "./Gemini.jsx";
-
+import ReactMarkdown from 'react-markdown';
 
 
 function ChatBox() {
@@ -14,6 +14,7 @@ function ChatBox() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [inputText,setinputText]=useState("Say Hi...");
 
 
   useEffect(() => {
@@ -84,8 +85,9 @@ function ChatBox() {
         {shouldPlayVideo && (
           <><video autoPlay loop muted playsInline className="back">
               <source src="Assets\4K Floating Particles Space 2160p Motion Background.mp4"></source>
-            </video><div className="overlayText">
-                <p>FosterAI</p>
+            </video>
+            <div className="overlayText">
+                <img src="../Assets/FosterAi_logo.png" />
               </div></>
               )}
       </div>
@@ -94,7 +96,7 @@ function ChatBox() {
         {messages.map((message, i) => (
           <div key={i} className={message.isBot ? "chat bot" : "chat"}>
             <img className="chatImg" src={message.isBot ? gptIcon : userIcon} alt="" />
-            <p className="txt">{message.txt}</p>
+            <p className="txt"><ReactMarkdown>{message.txt}</ReactMarkdown></p>
           </div>
         ))}
         <div ref={msgEnd} />
@@ -103,18 +105,20 @@ function ChatBox() {
         <div className="inp">
           <input
             type="text"
-            placeholder="Message FosterAI..."
+            placeholder={inputText}
             value={input}
             onKeyDown={handleEnter}
             onChange={(e) => {
               setInput(e.target.value);
-            }}
+              setinputText("Message FosterAI...")
+            }
+            }
           />
           <button className="send" onClick={handleSend}>
             <img src={sendBtn} alt="send" />
           </button>
         </div>
-        <div className="footer"><p>Beta stage may prone to error.</p></div>
+        <div className="footer"><p>Under Beta stage may produce incorrect results.</p></div>
         
       </div>
     </div>
